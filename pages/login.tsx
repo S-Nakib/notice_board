@@ -1,27 +1,33 @@
 import { useState } from "react";
 import AuthInput from "../components/auth_input/auth_input";
-import Button from "../components/button/button";
-import { buttonStateType } from "../types";
-import { buttonStates } from "../globals";
 
 const login: React.FC = () => {
-    const [buttonState, setButtonState] = useState<buttonStateType>(
-        buttonStates.submit
-    );
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     return (
-        <div>
-            <AuthInput type="text"></AuthInput>
-            <AuthInput type="password"></AuthInput>
-            <Button
-                state={buttonState.state}
-                handler={() => {
-                    setButtonState(buttonStates.loading);
+        <form
+            onSubmit={(e: React.FormEvent) => {
+                e.preventDefault();
+            }}
+        >
+            <AuthInput
+                type="text"
+                handler={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setUsername(e.target.value ?? "");
                 }}
-            >
-                {buttonState.message}
-            </Button>
-        </div>
+                value={username}
+            ></AuthInput>
+            <AuthInput
+                type="password"
+                handler={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setPassword(e.target.value ?? "");
+                }}
+                value={password}
+            ></AuthInput>
+
+            <AuthInput type="submit" value="Submit"></AuthInput>
+        </form>
     );
 };
 

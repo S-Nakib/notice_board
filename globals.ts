@@ -15,10 +15,8 @@ export const buttonStates: buttonStatesType = {
     },
     end: {
         state: false,
-        message: "No more notices."
-    },
-    submit: {
-        state: true,
-        message: "Submit"
+        message: "No more notices"
     }
 };
+
+export const cookieMaxAge = 36000;

@@ -8,7 +8,7 @@ export type buttonStatesType = Readonly<
         {
             [name: string]: buttonStateType;
         },
-        "loading" | "error" | "success" | "end" | "submit"
+        "loading" | "error" | "success" | "end"
     >
 >;
 
