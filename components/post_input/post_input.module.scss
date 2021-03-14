@@ -1,0 +1,49 @@
+@import "../../globals.scss";
+
+//A box is needed for border radius to work.
+.box {
+    display: block;
+    margin: 1rem auto;
+    padding: 1rem;
+    height: 17rem;
+    width: 75%;
+    border-radius: 2rem;
+    box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+    background-color: rgb(205, 206, 216);
+
+    @media (max-width: map-get($map: $device-breakpoints, $key:mobile )) {
+        width: 100%;
+    }
+
+    textarea {
+        padding: 0 0.5rem 0 0;
+        margin: 0;
+        width: 100%;
+        border-width: 0;
+        background-color: inherit;
+        outline: none;
+        resize: none;
+    }
+
+    .titleInput {
+        text-align: center;
+        height: 3rem;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        font-weight: bolder;
+
+        @media (max-width: map-get($map: $device-breakpoints, $key:mobile )) {
+            font-size: 2rem;
+            line-height: 2rem;
+            font-weight: bold;
+        }
+    }
+
+    .contentInput {
+        height: 12rem;
+        font-size: 2rem;
+        @media (max-width: map-get($map: $device-breakpoints, $key:mobile )) {
+            font-size: 1.5rem;
+        }
+    }
+}

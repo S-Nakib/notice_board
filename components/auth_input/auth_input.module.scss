@@ -1,0 +1,20 @@
+.div {
+    margin: 2rem 0;
+    label {
+        display: block;
+        color: white;
+        width: 15rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+    }
+    input {
+        display: block;
+        height: 2rem;
+        font-size: 1.5rem;
+        width: 15rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

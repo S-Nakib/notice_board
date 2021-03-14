@@ -1,0 +1,96 @@
+@import "../globals.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+p {
+    font-size: 1.5rem;
+    text-align: justify;
+
+    @media (max-width: map-get($map: $device-breakpoints, $key:mobile )) {
+        text-align: initial;
+        font-size: 1.25rem;
+    }
+}
+
+a {
+    color: #58a5fd;
+    text-decoration: none;
+    font-size: 1.25rem;
+    @media (max-width: map-get($map: $device-breakpoints, $key:mobile )) {
+        font-size: 1rem;
+    }
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1.17rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 0.83rem;
+}
+
+li {
+    font-size: 1.25rem;
+    @media (max-width: map-get($map: $device-breakpoints, $key:mobile )) {
+        font-size: 1rem;
+    }
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(0, 0, 0);
+
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    #__next {
+        min-height: 100%;
+        width: 100%;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        header {
+        }
+
+        main {
+            height: 100%;
+            flex-grow: 1;
+            background-color: #2f405e;
+            color: #000000;
+            padding: 1rem;
+            margin: 4%;
+            border-radius: 2rem;
+        }
+
+        footer {
+        }
+    }
+}

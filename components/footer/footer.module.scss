@@ -1,0 +1,17 @@
+.footer {
+    height: 5rem;
+    background-color: rgb(48, 51, 65);
+    color: rgb(189, 189, 189);
+
+    h2,
+    p {
+        margin: 0;
+        text-align: center;
+    }
+    p {
+        font-size: 1rem;
+    }
+    a {
+        color: rgb(145, 0, 0);
+    }
+}
