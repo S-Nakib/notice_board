@@ -6,7 +6,7 @@ const username = "admin",
 
 export default (req: NextApiRequest): boolean => {
     return (
-        Object.keys(req.cookies).length === 0 &&
+        !req.cookies.sessionID &&
         req.method === "POST" &&
         req.body?.username === username &&
         req.body?.password === password

@@ -4,13 +4,23 @@ const authInput: React.FC<{
     type: "text" | "password" | "submit";
     value: string;
     handler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
+    error?: boolean;
 }> = (props) => {
     return props.type === "submit" ? (
-        <input
-            type="submit"
-            value="Submit"
-            className={`${style.authInput} ${style.submit}`}
-        ></input>
+        <>
+            <input
+                type="submit"
+                value={props.value}
+                className={`${style.authInput} ${style.submit}`}
+                disabled={props.disabled}
+            ></input>
+            {props.error ? (
+                <p className={style.error}>
+                    An error occured Please try again.
+                </p>
+            ) : null}
+        </>
     ) : (
         <>
             <label className={style.authInput}>

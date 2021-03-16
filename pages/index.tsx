@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAsync } from "react-async-hook";
+import { useQuery } from "react-query";
 import fetchData from "../frontend_utils/fetchData";
 import Card from "../components/card/card";
 import PostInput from "../components/post_input/post_input";
@@ -14,22 +14,24 @@ const Home: React.FC = () => {
     const [group, setGroup] = useState<number>(1);
     const [button, setButton] = useState<buttonStateType>(buttonStates.loading);
 
-    const asyncData = useAsync(fetchData, [group]);
+    const { isLoading, error, data } = useQuery(["notices", group], () =>
+        fetchData(group)
+    );
 
     useEffect(() => {
-        if (asyncData.loading) setButton(buttonStates.loading);
-        if (asyncData.error) setButton(buttonStates.error);
+        if (isLoading) setButton(buttonStates.loading);
+        if (error) setButton(buttonStates.error);
 
-        if (asyncData.result && asyncData.result.status === 200) {
-            contents.push(...asyncData.result.data);
+        if (data && data.status === 200) {
+            contents.push(...data.data);
 
-            if (asyncData.result.data.length === docPerGroup) {
+            if (data.data.length === docPerGroup) {
                 setButton(buttonStates.success);
-            } else if (asyncData.result.data.length < docPerGroup) {
+            } else if (data.data.length < docPerGroup) {
                 setButton(buttonStates.end);
             }
         }
-    }, [asyncData.loading, asyncData.error, asyncData.result]);
+    }, [isLoading, error, data]);
 
     return (
         <>

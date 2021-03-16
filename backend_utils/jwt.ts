@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { cookieMaxAge } from "../_globals";
+import { cookieMaxAge } from "../globals";
 
 const userData = "admin";
 const secretKey = "fjlsareojikherj33h3l3h33hio3ho343ojfsfdsfds453543gds43";
