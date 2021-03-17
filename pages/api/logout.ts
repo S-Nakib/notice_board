@@ -6,6 +6,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         res.status(401).send("Logout Failed");
     else {
         res.setHeader("Set-Cookie", `sessionID=""; Max-Age=${-1}; HttpOnly`);
-        res.status(201).send("Logout Successful");
+        res.status(200).send("Logout Successful");
     }
 };

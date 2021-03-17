@@ -6,6 +6,9 @@ const authInput: React.FC<{
     handler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     error?: boolean;
+    errorText?: string;
+    success?: boolean;
+    successText?: string;
 }> = (props) => {
     return props.type === "submit" ? (
         <>
@@ -16,9 +19,10 @@ const authInput: React.FC<{
                 disabled={props.disabled}
             ></input>
             {props.error ? (
-                <p className={style.error}>
-                    An error occured Please try again.
-                </p>
+                <p className={style.error}>{props.errorText}</p>
+            ) : null}
+            {props.success ? (
+                <p className={style.success}>{props.successText}</p>
             ) : null}
         </>
     ) : (
@@ -29,6 +33,7 @@ const authInput: React.FC<{
                     type={props.type}
                     onChange={props.handler}
                     value={props.value}
+                    required
                 ></input>
             </label>
         </>

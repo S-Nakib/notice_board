@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import LoginManager from "../HOC/login_manager";
 import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
 import "../styles/globals.scss";
@@ -27,7 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
                 <Header></Header>
                 <main>
-                    <Component {...pageProps} />
+                    <LoginManager>
+                        <Component {...pageProps} />
+                    </LoginManager>
                 </main>
                 <Footer></Footer>
             </LoginContext.Provider>

@@ -8,9 +8,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     else {
         try {
             const table = await mongodb();
-            await table.insertOne(JSON.parse(req.body.data));
-            res.status(200).send("created");
-        } catch {
+
+            await table.insertOne({
+                title: req.body.title,
+                content: req.body.content
+            });
+
+            res.status(201).send("created");
+        } catch (e) {
+            console.log(e);
             res.status(500).send("An error occured. Please try again.");
         }
     }

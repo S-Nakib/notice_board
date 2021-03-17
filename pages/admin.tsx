@@ -14,35 +14,34 @@ const adminPage: React.FC = () => {
         isLoading: loginIsLoading,
         isError: loginIsError,
         isSuccess: loginIsSuccess,
+        isFetching: loginIsFetching,
+
         data: loginData,
         refetch: loginRefetch
     } = useQuery(["login"], () => login({ username, password }), {
-        enabled: false,
-        staleTime: 0
+        enabled: false
     });
 
     const {
         isLoading: logoutIsLoading,
         isError: logoutIsError,
         isSuccess: logoutIsSuccess,
+        isFetching: logoutIsFetching,
         data: logoutData,
         refetch: logoutRefetch
     } = useQuery(["logout"], () => logout(), {
-        enabled: false,
-        staleTime: 0
+        enabled: false
     });
-    console.log(
-        "loginIsError=",
-        loginIsError,
-        "  loginIsLoading=",
-        loginIsLoading,
-        "  isLoggedIn=",
-        isLoggedIn
-    );
+
     useEffect(() => {
-        if (loginIsSuccess && loginData) setIsLoggedIn(true);
-        if (logoutIsSuccess && logoutData) setIsLoggedIn(false);
-    }, [loginIsSuccess, logoutIsSuccess]);
+        if (!loginIsFetching && loginIsSuccess && loginData)
+            setIsLoggedIn(true);
+    }, [loginIsFetching]);
+
+    useEffect(() => {
+        if (!logoutIsFetching && logoutIsSuccess && logoutData)
+            setIsLoggedIn(false);
+    }, [logoutIsFetching]);
 
     return (
         <>
@@ -56,7 +55,7 @@ const adminPage: React.FC = () => {
                     <h1>After logging out you can only read notices.</h1>
                     <AuthInput
                         type="submit"
-                        value={logoutIsLoading ? "Loading..." : "Submit"}
+                        value={logoutIsLoading ? "Loading..." : "Logout"}
                         disabled={logoutIsLoading}
                         error={logoutIsError}
                     ></AuthInput>
@@ -85,9 +84,11 @@ const adminPage: React.FC = () => {
 
                     <AuthInput
                         type="submit"
-                        value={loginIsLoading ? "Loading" : "Submit"}
+                        value={loginIsLoading ? "Loading" : "Login"}
                         disabled={loginIsLoading}
                         error={loginIsError}
+                        errorText=" An error occured. Please try again with correct username
+                        and password."
                     ></AuthInput>
                 </form>
             )}
