@@ -1,11 +1,13 @@
 import axios, { AxiosRequestConfig } from "axios";
 import qs from "qs";
+import { noticeType } from "../types";
 
 const create_post = async (data: {
     title: string;
     content: string;
-}): Promise<boolean> => {
-    if (!data.title || !data.content) return false;
+}): Promise<noticeType> => {
+    if (!data.title || !data.content) throw new Error();
+
     const config: AxiosRequestConfig = {
         method: "POST",
         url: "/api/create",
@@ -16,6 +18,14 @@ const create_post = async (data: {
     };
 
     const response = await axios(config);
-    return response.status === 201;
+
+    if (response.status === 201) {
+        return {
+            _id: response.data,
+            title: data.title,
+            content: data.content
+        };
+    } else throw new Error();
 };
+
 export default create_post;

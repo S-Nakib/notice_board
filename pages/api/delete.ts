@@ -13,9 +13,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 _id: new ObjectID(req.body._id)
             });
 
-            if (deleted.deletedCount === 1)
-                res.status(200).send("deleted 1 document");
-            else res.status(200).send("No match found. Deleted 0 documents.");
+            if (deleted.deletedCount === 1) res.status(200).send(req.body._id);
+            else res.status(200).send("");
         } catch {
             res.status(500).send("An error occured. Please try again.");
         }

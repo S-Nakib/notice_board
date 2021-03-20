@@ -9,13 +9,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             const { param } = req.query;
 
-            const group = parseInt(param as string);
+            const skip = parseInt(param as string);
             const table = await mongodb();
 
             const cursor = await table
                 .find()
                 .sort({ _id: -1 })
-                .skip(group > 0 ? (group - 1) * docPerGroup : 0)
+                .skip(skip)
                 .limit(docPerGroup);
 
             const docs = await cursor.toArray();

@@ -9,14 +9,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             const table = await mongodb();
 
-            await table.insertOne({
+            const response = await table.insertOne({
                 title: req.body.title,
                 content: req.body.content
             });
 
-            res.status(201).send("created");
+            res.status(201).send(response.insertedId);
         } catch (e) {
-            console.log(e);
             res.status(500).send("An error occured. Please try again.");
         }
     }

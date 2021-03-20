@@ -13,8 +13,23 @@ export type buttonStatesType = Readonly<
 >;
 
 //Type of the contents of each notice
-export type contentType = {
+export type noticeType = {
     _id: string;
     title: string;
     content: string;
 };
+
+//Action on the notice reducer.
+export type actionType =
+    | {
+          type: "CREATE";
+          notice: noticeType;
+      }
+    | {
+          type: "READ";
+          notices: noticeType[];
+      }
+    | {
+          type: "DELETE";
+          id: string;
+      };

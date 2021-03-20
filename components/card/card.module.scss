@@ -9,4 +9,17 @@
     h2 {
         text-align: center;
     }
+    div {
+        display: flex;
+        button {
+            height: 2rem;
+            width: auto;
+            padding: 0.5rem;
+            background-color: red;
+            color: white;
+            outline: none;
+            border-width: 0;
+            border-radius: 1rem;
+        }
+    }
 }

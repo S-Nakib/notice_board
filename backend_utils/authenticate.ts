@@ -2,7 +2,7 @@
 import type { NextApiRequest } from "next";
 
 const username = "admin",
-    password = "fsfdlsdflsfd";
+    password = "admin";
 
 export default (req: NextApiRequest): boolean => {
     return (

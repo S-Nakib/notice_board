@@ -20,3 +20,4 @@ export const buttonStates: buttonStatesType = {
 };
 
 export const cookieMaxAge = 36000;
+export const noticesPerGroup = 3;

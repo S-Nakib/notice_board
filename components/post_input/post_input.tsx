@@ -1,12 +1,12 @@
 import {} from "react";
 import style from "./post_input.module.scss";
 
-type propsType = {
+type propsType = Readonly<{
     titleHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     titleValue: string;
     postHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     postValue: string;
-};
+}>;
 
 const postInput: React.FC<propsType> = (props) => (
     <div className={style.box}>
