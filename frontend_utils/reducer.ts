@@ -10,6 +10,11 @@ const reducer = (state: noticeType[], action: actionType): noticeType[] => {
             newState.push(...action.notices);
             return newState;
 
+        case "UPDATE":
+            return state.map((notice) =>
+                notice._id === action.notice._id ? action.notice : notice
+            );
+
         case "DELETE":
             return state.filter((value) => value._id !== action.id);
 

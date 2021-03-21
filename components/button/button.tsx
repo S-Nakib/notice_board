@@ -1,9 +1,10 @@
+import React from "react";
 import style from "./button.module.scss";
 
 const button: React.FC<{
     state: boolean;
     handler: () => void;
-    children: string;
+    value: string;
 }> = (props) => {
     const classes = props.state
         ? `${style.button} ${style.clickableButton}`
@@ -16,8 +17,8 @@ const button: React.FC<{
             className={classes}
             disabled={!props.state}
         >
-            {props.children}
+            {props.value}
         </button>
     );
 };
-export default button;
+export default React.memo(button);

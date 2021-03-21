@@ -1,15 +1,25 @@
+import React from "react";
 import style from "./auth_input.module.scss";
 
-const authInput: React.FC<{
-    type: "text" | "password" | "submit";
-    value: string;
-    handler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    disabled?: boolean;
-    error?: boolean;
-    errorText?: string;
+type submit = {
+    type: "submit";
+    disabled: boolean;
+    error: boolean;
+    errorText: string;
     success?: boolean;
     successText?: string;
-}> = (props) => {
+};
+
+type other = {
+    type: "text" | "password";
+    handler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+type common = {
+    value: string;
+};
+
+const authInput: React.FC<(submit & common) | (other & common)> = (props) => {
     return props.type === "submit" ? (
         <>
             <input
@@ -40,4 +50,4 @@ const authInput: React.FC<{
     );
 };
 
-export default authInput;
+export default React.memo(authInput);

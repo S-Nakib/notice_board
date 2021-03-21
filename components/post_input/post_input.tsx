@@ -1,11 +1,11 @@
-import {} from "react";
+import React from "react";
 import style from "./post_input.module.scss";
 
 type propsType = Readonly<{
     titleHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     titleValue: string;
-    postHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-    postValue: string;
+    contentHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    contentValue: string;
 }>;
 
 const postInput: React.FC<propsType> = (props) => (
@@ -15,6 +15,7 @@ const postInput: React.FC<propsType> = (props) => (
             className={style.titleInput}
             placeholder="Title"
             spellCheck={true}
+            value={props.titleValue}
             onChange={props.titleHandler}
             required
         ></textarea>
@@ -23,9 +24,10 @@ const postInput: React.FC<propsType> = (props) => (
             className={style.contentInput}
             placeholder="Content"
             spellCheck={true}
-            onChange={props.postHandler}
+            value={props.contentValue}
+            onChange={props.contentHandler}
             required
         ></textarea>
     </div>
 );
-export default postInput;
+export default React.memo(postInput);

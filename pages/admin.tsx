@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useQuery } from "react-query";
 import { LoginContext } from "./_app";
 import login from "../frontend_utils/login";
@@ -15,7 +15,6 @@ const adminPage: React.FC = () => {
         isError: loginIsError,
         isSuccess: loginIsSuccess,
         isFetching: loginIsFetching,
-
         data: loginData,
         refetch: loginRefetch
     } = useQuery(["login"], () => login({ username, password }), {
@@ -43,6 +42,20 @@ const adminPage: React.FC = () => {
             setIsLoggedIn(false);
     }, [logoutIsFetching]);
 
+    const usernameHandler = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            setUsername(e.target.value ?? "");
+        },
+        []
+    );
+
+    const passwordHandler = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            setPassword(e.target.value ?? "");
+        },
+        []
+    );
+
     return (
         <>
             {isLoggedIn ? (
@@ -58,6 +71,7 @@ const adminPage: React.FC = () => {
                         value={logoutIsLoading ? "Loading..." : "Logout"}
                         disabled={logoutIsLoading}
                         error={logoutIsError}
+                        errorText="An error occurred on logout."
                     ></AuthInput>
                 </form>
             ) : (
@@ -69,16 +83,12 @@ const adminPage: React.FC = () => {
                 >
                     <AuthInput
                         type="text"
-                        handler={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setUsername(e.target.value ?? "");
-                        }}
+                        handler={usernameHandler}
                         value={username}
                     ></AuthInput>
                     <AuthInput
                         type="password"
-                        handler={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setPassword(e.target.value ?? "");
-                        }}
+                        handler={passwordHandler}
                         value={password}
                     ></AuthInput>
 
@@ -87,7 +97,7 @@ const adminPage: React.FC = () => {
                         value={loginIsLoading ? "Loading" : "Login"}
                         disabled={loginIsLoading}
                         error={loginIsError}
-                        errorText=" An error occured. Please try again with correct username
+                        errorText=" An error occurred. Please try again with correct username
                         and password."
                     ></AuthInput>
                 </form>
@@ -96,4 +106,4 @@ const adminPage: React.FC = () => {
     );
 };
 
-export default adminPage;
+export default React.memo(adminPage);

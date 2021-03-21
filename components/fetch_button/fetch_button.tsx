@@ -1,4 +1,4 @@
-import { useState, useEffect, Dispatch } from "react";
+import React, { useState, useEffect, useCallback, Dispatch } from "react";
 import { useQuery } from "react-query";
 import fetchData from "../../frontend_utils/fetchData";
 import Button from "../../components/button/button";
@@ -22,7 +22,6 @@ const fetchButton: React.FC<propsType> = (props) => {
         refetch: noticesRefetch
     } = useQuery(["notices"], () => fetchData(props.notices.length));
 
-    //This is needed to be checked again.
     useEffect(() => {
         if (noticesIsLoading) setNoticesButton(buttonStates.loading);
         if (noticesIsError) setNoticesButton(buttonStates.error);
@@ -38,16 +37,16 @@ const fetchButton: React.FC<propsType> = (props) => {
         }
     }, [noticesIsLoading, noticesIsError, noticesData]);
 
+    const handler = useCallback(() => {
+        noticesRefetch();
+    }, []);
     return (
         <Button
             state={noticesButton.state}
-            handler={() => {
-                noticesRefetch();
-            }}
-        >
-            {noticesButton.message}
-        </Button>
+            handler={handler}
+            value={noticesButton.message}
+        ></Button>
     );
 };
 
-export default fetchButton;
+export default React.memo(fetchButton);

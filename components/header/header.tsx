@@ -1,3 +1,4 @@
+import React from "react";
 import style from "./header.module.scss";
 
 const Header: React.FC = () => (
@@ -5,4 +6,4 @@ const Header: React.FC = () => (
         <a href="/">Home</a>
     </div>
 );
-export default Header;
+export default React.memo(Header);

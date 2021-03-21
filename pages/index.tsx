@@ -1,14 +1,22 @@
-import { useReducer } from "react";
+import React, { useCallback, useReducer } from "react";
 import Post from "../components/post/post";
 import Card from "../components/card/card";
 import FetchButton from "../components/fetch_button/fetch_button";
 import reducer from "../frontend_utils/reducer";
 import { noticeType, actionType } from "../types";
 
-const Home: React.FC = () => {
+const index: React.FC = () => {
     const [notices, dispatch] = useReducer<
         (state: noticeType[], action: actionType) => noticeType[]
     >(reducer, []);
+
+    const deleteHandler = useCallback((id: string) => {
+        dispatch({ type: "DELETE", id: id });
+    }, []);
+
+    const updateHandler = useCallback((notice: noticeType) => {
+        dispatch({ type: "UPDATE", notice: notice });
+    }, []);
 
     return (
         <>
@@ -18,13 +26,11 @@ const Home: React.FC = () => {
                 <Card
                     key={doc._id}
                     id={doc._id}
-                    deleteHandler={(id: string) => {
-                        dispatch({ type: "DELETE", id: id });
-                    }}
-                >
-                    <h2>{doc.title}</h2>
-                    <p>{doc.content}</p>
-                </Card>
+                    deleteHandler={deleteHandler}
+                    updateHandler={updateHandler}
+                    title={doc.title}
+                    content={doc.content}
+                ></Card>
             ))}
 
             <FetchButton notices={notices} dispatch={dispatch}></FetchButton>
@@ -32,4 +38,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default React.memo(index);

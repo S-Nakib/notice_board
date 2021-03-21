@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             if (deleted.deletedCount === 1) res.status(200).send(req.body._id);
             else res.status(200).send("");
         } catch {
-            res.status(500).send("An error occured. Please try again.");
+            res.status(500).send("An error occurred. Please try again.");
         }
     }
 };

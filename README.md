@@ -13,19 +13,17 @@ Some features may not work since we use HTTPS. I have written a blog about how t
 
 So if you are using HTTPS, you can proceed.
 
-Now go to the https://localhost:3000/admin page and log in using username: admin and password: admin.
+Now go to the https://localhost:3000/admin page and log in using "admin" as both username and password.
 
-Then go to the https://localhost:3000 or if there was already a tab just refresh it and you will be logged in.
+Then go to the https://localhost:3000
 
-Now you can create, read and delete notices.
-
-I am working on the update operation.
+Now you can create, read, update and delete notices.
 
 ## Working with the code.
 
 For the react developers who don't know next.js, I am giving a short overview of the code so that they can understand.
 
-On the **pages** directory, we have defined the pages of the site. index is for / and admin is for /admin. They are react functional components.  
+On the **pages** directory, we have defined the pages of the site. index is for / page and admin is for /admin. They are react functional components.  
 The routing structure of the site will be the same as the pages directory.
 
 By the way here **\_app.tsx** is not a page but it is a functional component that gets all the pages as props. Here the common code of all pages is defined.

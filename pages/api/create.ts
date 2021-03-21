@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             res.status(201).send(response.insertedId);
         } catch (e) {
-            res.status(500).send("An error occured. Please try again.");
+            res.status(500).send("An error occurred. Please try again.");
         }
     }
 };

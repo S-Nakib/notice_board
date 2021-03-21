@@ -3,23 +3,76 @@
     background-color: rgb(0, 0, 0);
     color: rgb(158, 145, 145);
     box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
-    border-radius: 1rem;
+    border-radius: 2rem;
     padding: 1rem;
     margin: 2rem 0;
+
     h2 {
         text-align: center;
     }
-    div {
+
+    .buttons {
         display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
         button {
             height: 2rem;
             width: auto;
             padding: 0.5rem;
-            background-color: red;
-            color: white;
+            font-size: 1rem;
+            cursor: pointer;
             outline: none;
             border-width: 0;
             border-radius: 1rem;
+        }
+
+        .delete {
+            background-color: rgb(153, 35, 35);
+            color: black;
+        }
+
+        .update {
+            color: white;
+            background-color: blue;
+        }
+    }
+}
+
+.messages {
+    display: flex;
+    justify-content: center;
+    color: green;
+
+    p {
+        font-size: 1.25rem;
+    }
+}
+
+.updateCard {
+    padding: 2rem 0;
+    margin: 2rem 0;
+    border-radius: 4rem;
+    background-color: rgb(0, 0, 0);
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+
+        button {
+            size: auto;
+            font-size: 1.25rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            outline: none;
+            border-width: 0;
+            border-radius: 1rem;
+        }
+        .cancel {
+            background-color: gray;
+            color: black;
+        }
+        .update {
+            background-color: green;
+            color: white;
         }
     }
 }

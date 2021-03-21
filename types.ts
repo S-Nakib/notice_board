@@ -30,6 +30,10 @@ export type actionType =
           notices: noticeType[];
       }
     | {
+          type: "UPDATE";
+          notice: noticeType;
+      }
+    | {
           type: "DELETE";
           id: string;
       };

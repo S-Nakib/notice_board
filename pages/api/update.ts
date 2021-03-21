@@ -9,17 +9,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     else {
         try {
             const table = await mongodb();
-
             await table.replaceOne(
                 {
                     _id: new ObjectID(req.body._id)
                 },
-                JSON.parse(req.body.data)
+                {
+                    title: req.body.title,
+                    content: req.body.content
+                }
             );
 
             res.status(200).send("updated");
-        } catch {
-            res.status(500).send("An error occured. Please try again.");
+        } catch (e) {
+            console.log(e);
+            res.status(500).send("An error occurred. Please try again.");
         }
     }
 };

@@ -1,4 +1,4 @@
-import { useState, useContext, Dispatch } from "react";
+import React, { useState, useContext, useCallback, Dispatch } from "react";
 import { useMutation } from "react-query";
 import { LoginContext } from "../../pages/_app";
 import PostInput from "../../components/post_input/post_input";
@@ -18,8 +18,24 @@ const post: React.FC<propsType> = (props) => {
     const mutation = useMutation(createPost, {
         onSuccess: (data) => {
             props.dispatch({ type: "CREATE", notice: data });
+            setTitle("");
+            setContent("");
         }
     });
+
+    const titleHandler = useCallback(
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            setTitle(e.target.value ?? "");
+        },
+        []
+    );
+
+    const contentHandler = useCallback(
+        (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            setContent(e.target.value ?? "");
+        },
+        []
+    );
 
     return (
         <>
@@ -31,18 +47,10 @@ const post: React.FC<propsType> = (props) => {
                     }}
                 >
                     <PostInput
-                        titleHandler={(
-                            e: React.ChangeEvent<HTMLTextAreaElement>
-                        ) => {
-                            setTitle(e.target.value ?? "");
-                        }}
+                        titleHandler={titleHandler}
                         titleValue={title}
-                        postHandler={(
-                            e: React.ChangeEvent<HTMLTextAreaElement>
-                        ) => {
-                            setContent(e.target.value ?? "");
-                        }}
-                        postValue={content}
+                        contentHandler={contentHandler}
+                        contentValue={content}
                     ></PostInput>
                     <AuthInput
                         type="submit"
@@ -66,4 +74,4 @@ const post: React.FC<propsType> = (props) => {
         </>
     );
 };
-export default post;
+export default React.memo(post);
