@@ -11,8 +11,6 @@ Now clone this project and run `npm run dev` from the root. This will start the 
 
 Some features may not work since we use HTTPS. I have written a blog about how to use HTTPS on next.js local development server [here](https://dev.to/nakib/using-https-on-next-js-local-development-server-bcd)
 
-So if you are using HTTPS, you can proceed.
-
 Now go to the https://localhost:3000/admin page and log in using "admin" as both username and password.
 
 Then go to the https://localhost:3000
